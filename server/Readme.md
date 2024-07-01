@@ -23,6 +23,7 @@ Chỉ cần clone repository này về máy, cd vào thư mục, cài đặt cá
 ```bash
 cd server
 npm i
+npx prisma generate
 npm run dev
 ```
 
