@@ -1,4 +1,4 @@
-import z from "zod";
+import z from 'zod'
 
 export const RegisterBody = z
   .object({
@@ -11,14 +11,14 @@ export const RegisterBody = z
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
       ctx.addIssue({
-        code: "custom",
-        message: "Mật khẩu không khớp",
-        path: ["confirmPassword"],
-      });
+        code: 'custom',
+        message: 'Mật khẩu không khớp',
+        path: ['confirmPassword'],
+      })
     }
-  });
+  })
 
-export type RegisterBodyType = z.TypeOf<typeof RegisterBody>;
+export type RegisterBodyType = z.TypeOf<typeof RegisterBody>
 
 export const RegisterRes = z.object({
   data: z.object({
@@ -30,19 +30,19 @@ export const RegisterRes = z.object({
     }),
   }),
   message: z.string(),
-});
+})
 
-export type RegisterResType = z.TypeOf<typeof RegisterRes>;
+export type RegisterResType = z.TypeOf<typeof RegisterRes>
 
 export const LoginBody = z
   .object({
     email: z.string().email(),
     password: z.string().min(6).max(100),
   })
-  .strict();
+  .strict()
 
-export type LoginBodyType = z.TypeOf<typeof LoginBody>;
+export type LoginBodyType = z.TypeOf<typeof LoginBody>
 
-export const LoginRes = RegisterRes;
+export const LoginRes = RegisterRes
 
-export type LoginResType = z.TypeOf<typeof LoginRes>;
+export type LoginResType = z.TypeOf<typeof LoginRes>
